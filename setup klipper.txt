@@ -1,0 +1,36 @@
+sudo adduser printer
+sudo usermod -a -G dialout printer
+sudo usermod -aG sudo printer
+
+
+sudo nmcli device wifi connect SSID password PASSWORD
+
+sudo apt remove python3.12
+sudo apt autoremove
+
+sudo apt update
+sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev \
+libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev wget \
+libbz2-dev
+
+wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
+tar -xf Python-3.7.4.tgz
+cd Python-3.7.4
+./configure --enable-optimizations
+make -j $(nproc)
+sudo make altinstall
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.7 2
+python3 --version
+
+
+
+git clone https://github.com/th33xitus/kiauh.git ~/kiauh
+cd ~/kiauh
+./kiauh.sh
+
+
+source ~/moonraker-env/bin/activate
+pip install importlib-metadata
+deactivate
+sudo systemctl restart moonraker
+
